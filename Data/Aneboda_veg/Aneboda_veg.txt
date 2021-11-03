@@ -1,0 +1,151 @@
+Station	StnKod	X_RAK	Y_RAK	èr	Yta	BestÜnd	ArtNr: 42	66	68	70	146	207	212	255	325	330	348	355	366	397	411	431
+Aneboda	ANEB	633265	142405	1996	B 5	Hîg gran med tall och lîv		*							*							
+Aneboda	ANEB	633265	142405	1996	B 6	Hîg gran med tall och lîv									Brott							
+Aneboda	ANEB	633265	142405	1996	C 5	Hîg gran med tall och lîv									*							
+Aneboda	ANEB	633265	142405	1996	C 7	Hîg gran med tall och lîv										Brott						
+Aneboda	ANEB	633265	142405	1996	D 5	Hîg gran med tall och lîv									*	TrÑngsel						
+Aneboda	ANEB	633265	142405	1996	D 9	Hîg gran med lîv	*	*							*							
+Aneboda	ANEB	633265	142405	1996	E 5	Hîg gran med tall									TrÑngsel	Brott						
+Aneboda	ANEB	633265	142405	1996	E 6	Hîg gran med tall									Brott	*						
+Aneboda	ANEB	633265	142405	1996	F 7	Hîg gran med tall									Brott	*						
+Aneboda	ANEB	633265	142405	1996	F 9	Hîg gran med tall och lîv									Hîgstubbe							
+Aneboda	ANEB	633265	142405	1996	G 5	Hîg gran med tall och lîv										VindfÑllning						
+Aneboda	ANEB	633265	142405	1996	G 8	Hîg gran med lîv		*							*							
+Aneboda	ANEB	633265	142405	1996	G 9	Hîg gran med lîv		*							*							
+Aneboda	ANEB	633265	142405	1996	G10	Hîg gran med tall och lîv		*							*	*						
+Aneboda	ANEB	633265	142405	1996	H 3	Medelhîg gran med tall och lîv		*							*	*						TrÑngsel
+Aneboda	ANEB	633265	142405	1996	H 4	Hîg gran		TrÑngsel							*	Avverkn.-stubbe						
+Aneboda	ANEB	633265	142405	1996	H 7	Hîg gran med lîv									Hîgstubbe							
+Aneboda	ANEB	633265	142405	1996	H 9	Hîg gran med lîv			*						*							
+Aneboda	ANEB	633265	142405	1996	H10	Hîg gran med tall och lîv		Hîgstubbe						TrÑngsel		*						
+Aneboda	ANEB	633265	142405	1996	I 3	Hîg gran med lîv			*						*							*
+Aneboda	ANEB	633265	142405	1996	I 4	Hîg gran med lîv		TrÑngsel							*							
+Aneboda	ANEB	633265	142405	1996	I 5	Hîg gran med lîv	*		*						*							
+Aneboda	ANEB	633265	142405	1996	I 7	Hîg gran med lîv		Brott							*							
+Aneboda	ANEB	633265	142405	1996	I 9	Hîg gran med lîv									*							
+Aneboda	ANEB	633265	142405	1996	I10	Medelhîg gran med lîv						Brott			*							
+Aneboda	ANEB	633265	142405	1996	J 2	Medelhîg gran med lîv													TrÑngsel			
+Aneboda	ANEB	633265	142405	1996	J 4	Medelhîg gran med lîv			*						*							
+Aneboda	ANEB	633265	142405	1996	J 5	Hîg gran med lîv			*						*							
+Aneboda	ANEB	633265	142405	1996	J 7	Medelhîg gran med lîv			*		*				*							*
+Aneboda	ANEB	633265	142405	1996	J 8	Medelhîg gran med lîv		*							*							
+Aneboda	ANEB	633265	142405	1996	J10	Hîg gran med lîv	*	*							*							
+Aneboda	ANEB	633265	142405	1996	K 4	Medelhîg gran med lîv			*						TrÑngsel							
+Aneboda	ANEB	633265	142405	1996	K 7	Hîg gran med lîv		*					*	TrÑngsel	*							*
+Aneboda	ANEB	633265	142405	1996	K 8	Hîg gran med lîv									*							
+Aneboda	ANEB	633265	142405	1996	K 9	Hîg gran med lîv				*					*							
+Aneboda	ANEB	633265	142405	1996	K10	Hîg gran med lîv	*	*					TrÑngsel		*							
+Aneboda	ANEB	633265	142405	1996	L 6	Medelhîg gran med lîv		*						*	*							
+Aneboda	ANEB	633265	142405	1996	L 8	Hîg gran med lîv		*							*							
+Aneboda	ANEB	633265	142405	1996	L 9	Hîg gran med lîv				*				TrÑngsel	*							*
+Aneboda	ANEB	633265	142405	1996	L10	Hîg gran med tall och lîv									*	Hîgstubbe						
+Aneboda	ANEB	633265	142405	1996	M 8	Hîg gran med tall och lîv		*							*							
+Aneboda	ANEB	633265	142405	2001	B 6	Hîg gran med tall och lîv									Brott	Brott						
+Aneboda	ANEB	633265	142405	2001	C 5	Hîg gran med tall och lîv									*							
+Aneboda	ANEB	633265	142405	2001	C 7	Hîg gran med tall och lîv										Brott						
+Aneboda	ANEB	633265	142405	2001	D 5	Hîg gran med tall och lîv									*	TrÑngsel						
+Aneboda	ANEB	633265	142405	2001	D 9	Hîg gran med lîv	Hîgstubbe	Hîgstubbe							TrÑngsel							
+Aneboda	ANEB	633265	142405	2001	E 5	Hîg gran med tall									TrÑngsel							
+Aneboda	ANEB	633265	142405	2001	E 6	Hîg gran med tall										*						
+Aneboda	ANEB	633265	142405	2001	F 5	Hîg gran med tall									TrÑngsel							
+Aneboda	ANEB	633265	142405	2001	F 7	Hîg gran med tall									Hîgstubbe	Annan okÑnd skada						
+Aneboda	ANEB	633265	142405	2001	F 9	Hîg gran med tall och lîv									Insekter							
+Aneboda	ANEB	633265	142405	2001	G 5	Hîg gran med tall och lîv									Brott	VindfÑllning						
+Aneboda	ANEB	633265	142405	2001	G 8	Hîg gran med lîv		Hîgstubbe	Hîgstubbe						*							
+Aneboda	ANEB	633265	142405	2001	G 9	Hîg gran med lîv		LÜgstubbe	Brott						*							
+Aneboda	ANEB	633265	142405	2001	G10	Hîg gran med tall och lîv		*							*	*						
+Aneboda	ANEB	633265	142405	2001	H 3	Medelhîg gran med tall och lîv		Varakt. nedbîjt								Avverkn.-stubbe						
+Aneboda	ANEB	633265	142405	2001	H 4	Hîg gran									TrÑngsel							
+Aneboda	ANEB	633265	142405	2001	H 7	Hîg gran med lîv									*							
+Aneboda	ANEB	633265	142405	2001	H 9	Hîg gran med lîv	TrÑngsel		*						*							
+Aneboda	ANEB	633265	142405	2001	H10	Hîg gran med tall och lîv		Hîgstubbe							TrÑngsel	TrÑngsel						
+Aneboda	ANEB	633265	142405	2001	I 3	Hîg gran med lîv									Avverkn.-stubbe					*		
+Aneboda	ANEB	633265	142405	2001	I 4	Hîg gran med lîv									*							
+Aneboda	ANEB	633265	142405	2001	I 5	Hîg gran med lîv	Varakt. nedbîjt								*							
+Aneboda	ANEB	633265	142405	2001	I 7	Hîg gran med lîv		Hîgstubbe							*							
+Aneboda	ANEB	633265	142405	2001	J 5	Hîg gran med lîv									*							
+Aneboda	ANEB	633265	142405	2001	J 8	Medelhîg gran med lîv		*	Hîgstubbe						*							
+Aneboda	ANEB	633265	142405	2001	J10	Hîg gran med lîv	*	*							*	Hîgstubbe						
+Aneboda	ANEB	633265	142405	2001	K 4	Medelhîg gran med lîv			TrÑngsel													
+Aneboda	ANEB	633265	142405	2001	K 7	Hîg gran med lîv		*							*							Hîgstubbe
+Aneboda	ANEB	633265	142405	2001	K 8	Hîg gran med lîv		Brott							*							
+Aneboda	ANEB	633265	142405	2001	K 9	Hîg gran med lîv									*							
+Aneboda	ANEB	633265	142405	2001	K10	Hîg gran med lîv	Hîgstubbe	*							*	Hîgstubbe				*		
+Aneboda	ANEB	633265	142405	2001	L 6	Medelhîg gran med lîv									*							
+Aneboda	ANEB	633265	142405	2001	L 8	Hîg gran med lîv	TrÑngsel	Annan okÑnd skada							*							
+Aneboda	ANEB	633265	142405	2001	L 9	Hîg gran med lîv		TrÑngsel							Brott							Hîgstubbe
+Aneboda	ANEB	633265	142405	2001	L10	Hîg gran med tall och lîv	LÜgstubbe								*	Hîgstubbe						
+Aneboda	ANEB	633265	142405	2001	M 8	Hîg gran med tall och lîv		TrÑngsel							*							
+Aneboda	ANEB	633265	142405	2006	B 6	Hîg gran med tall och lîv									*	Brott						
+Aneboda	ANEB	633265	142405	2006	C 5	Hîg gran med tall och lîv		VindfÑllning	VindfÑllning						*	VindfÑllning						
+Aneboda	ANEB	633265	142405	2006	D 5	Hîg gran med tall och lîv									TrÑngsel	TrÑngsel						
+Aneboda	ANEB	633265	142405	2006	D 6	Hîg gran med lîv			Hîgstubbe						*							
+Aneboda	ANEB	633265	142405	2006	D 8	Hîg gran med lîv		*							*							
+Aneboda	ANEB	633265	142405	2006	E 5	Hîg gran med tall									*							
+Aneboda	ANEB	633265	142405	2006	E 6	Hîg gran med tall									*	*						
+Aneboda	ANEB	633265	142405	2006	E 8	Hîg gran med lîv		Annan okÑnd skada				Brott			*							
+Aneboda	ANEB	633265	142405	2006	F 5	Hîg gran med tall									*	VindfÑllning						
+Aneboda	ANEB	633265	142405	2006	F 7	Hîg gran med tall									*	*						
+Aneboda	ANEB	633265	142405	2006	F 9	Hîg gran med tall och lîv									*							
+Aneboda	ANEB	633265	142405	2006	G 5	Hîg gran med tall och lîv									Brott	VindfÑllning						
+Aneboda	ANEB	633265	142405	2006	G 8	Hîg gran med lîv		Hîgstubbe	Hîgstubbe						*							
+Aneboda	ANEB	633265	142405	2006	G 9	Hîg gran med lîv		LÜgstubbe	*						*							
+Aneboda	ANEB	633265	142405	2006	G10	Hîg gran med tall och lîv		*							*	*						
+Aneboda	ANEB	633265	142405	2006	H 3	Medelhîg gran med tall och lîv		*							*							
+Aneboda	ANEB	633265	142405	2006	H 4	Hîg gran									TrÑngsel							
+Aneboda	ANEB	633265	142405	2006	H 5	Hîg gran med tall									*							
+Aneboda	ANEB	633265	142405	2006	H 9	Hîg gran med lîv	TrÑngsel								*							
+Aneboda	ANEB	633265	142405	2006	H10	Hîg gran med tall och lîv		Hîgstubbe							TrÑngsel	TrÑngsel						
+Aneboda	ANEB	633265	142405	2006	I 3	Hîg gran med lîv		*	Brott						VindfÑllning					Brott		
+Aneboda	ANEB	633265	142405	2006	I 4	Hîg gran med lîv									*							
+Aneboda	ANEB	633265	142405	2006	I 5	Hîg gran med lîv	Varakt. nedbîjt								*							
+Aneboda	ANEB	633265	142405	2006	I 7	Hîg gran med lîv									*							
+Aneboda	ANEB	633265	142405	2006	I 9	Hîg gran med lîv									*							
+Aneboda	ANEB	633265	142405	2006	J 2	Medelhîg gran med lîv									VindfÑllning							
+Aneboda	ANEB	633265	142405	2006	J 5	Hîg gran med lîv			Brott						*							
+Aneboda	ANEB	633265	142405	2006	J 7	Medelhîg gran med lîv									*							
+Aneboda	ANEB	633265	142405	2006	J 8	Medelhîg gran med lîv		*	*						*							
+Aneboda	ANEB	633265	142405	2006	J10	Hîg gran med lîv		*							*	Hîgstubbe						
+Aneboda	ANEB	633265	142405	2006	K 4	Medelhîg gran med lîv			*						*							
+Aneboda	ANEB	633265	142405	2006	K 7	Hîg gran med lîv		*							*							Hîgstubbe
+Aneboda	ANEB	633265	142405	2006	K 8	Hîg gran med lîv		*							*							VindfÑllning
+Aneboda	ANEB	633265	142405	2006	K 9	Hîg gran med lîv		*	VindfÑllning						*							
+Aneboda	ANEB	633265	142405	2006	K10	Hîg gran med lîv	*	*	*						*	Hîgstubbe				*		
+Aneboda	ANEB	633265	142405	2006	L 6	Medelhîg gran med lîv									*							
+Aneboda	ANEB	633265	142405	2006	L 8	Hîg gran med lîv	TrÑngsel	*							*							
+Aneboda	ANEB	633265	142405	2006	L 9	Hîg gran med lîv		*							*							Hîgstubbe
+Aneboda	ANEB	633265	142405	2006	L10	Hîg gran med tall och lîv	LÜgstubbe		Annan okÑnd skada						*	Hîgstubbe						
+Aneboda	ANEB	633265	142405	2011	B 6	Hîg gran med tall och lîv									*	*						
+Aneboda	ANEB	633265	142405	2011	C 7	Hîg gran med tall och lîv		VindfÑllning							*							
+Aneboda	ANEB	633265	142405	2011	D 9	Hîg gran med lîv	Annan okÑnd skada								*							
+Aneboda	ANEB	633265	142405	2011	E 5	Hîg gran med tall									*							
+Aneboda	ANEB	633265	142405	2011	E 6	Hîg gran med tall									*	*						
+Aneboda	ANEB	633265	142405	2011	I 3	Hîg gran med lîv		*	*						*							
+Aneboda	ANEB	633265	142405	2011	I 4	Hîg gran med lîv									*							
+Aneboda	ANEB	633265	142405	2011	I 5	Hîg gran med lîv									*							
+Aneboda	ANEB	633265	142405	2011	I 7	Hîg gran med lîv						Brott			*							
+Aneboda	ANEB	633265	142405	2011	I 9	Hîg gran med lîv									*							
+Aneboda	ANEB	633265	142405	2011	I10	Medelhîg gran med lîv						Annan okÑnd skada		Annan okÑnd skada	*							
+Aneboda	ANEB	633265	142405	2011	J 2	Medelhîg gran med lîv									VindfÑllning							
+Aneboda	ANEB	633265	142405	2011	J 5	Hîg gran med lîv			Brott						*							
+Aneboda	ANEB	633265	142405	2011	J 7	Medelhîg gran med lîv									*							
+Aneboda	ANEB	633265	142405	2011	J10	Hîg gran med lîv		*	*						*		Hîgstubbe					
+Aneboda	ANEB	633265	142405	2011	K 4	Medelhîg gran med lîv		Annan okÑnd skada	*						*							
+Aneboda	ANEB	633265	142405	2011	K10	Hîg gran med lîv	*	*	*						*	Hîgstubbe						
+Aneboda	ANEB	633265	142405	2011	L 6	Medelhîg gran med lîv									*	Annan okÑnd skada						
+Aneboda	ANEB	633265	142405	2016	B 6	Hîg gran med tall och lîv									*	Brott						
+Aneboda	ANEB	633265	142405	2016	C 7	Hîg gran med tall och lîv		VindfÑllning							*	Annan okÑnd skada						
+Aneboda	ANEB	633265	142405	2016	E 5	Hîg gran med tall									*							
+Aneboda	ANEB	633265	142405	2016	E 6	Hîg gran med tall									*	*						
+Aneboda	ANEB	633265	142405	2016	I 3	Hîg gran med lîv		*	*						*							
+Aneboda	ANEB	633265	142405	2016	I 4	Hîg gran med lîv									*							
+Aneboda	ANEB	633265	142405	2016	I 5	Hîg gran med lîv									*							
+Aneboda	ANEB	633265	142405	2016	I 9	Hîg gran med lîv									*							
+Aneboda	ANEB	633265	142405	2016	I10	Medelhîg gran med lîv								Annan okÑnd skada	*	Annan okÑnd skada						Annan okÑnd skada
+Aneboda	ANEB	633265	142405	2016	J 2	Medelhîg gran med lîv		Annan okÑnd skada							VindfÑllning							
+Aneboda	ANEB	633265	142405	2016	J 5	Hîg gran med lîv			Brott						*							
+Aneboda	ANEB	633265	142405	2016	J 7	Medelhîg gran med lîv			Annan okÑnd skada						*							
+Aneboda	ANEB	633265	142405	2016	J10	Hîg gran med lîv	Annan okÑnd skada	*	*						*		Hîgstubbe					
+Aneboda	ANEB	633265	142405	2016	K 4	Medelhîg gran med lîv		Annan okÑnd skada	*						*							
+Aneboda	ANEB	633265	142405	2016	K10	Hîg gran med lîv	Annan okÑnd skada	*	Annan okÑnd skada						*	Hîgstubbe						
+Aneboda	ANEB	633265	142405	2016	L 6	Medelhîg gran med lîv									*	Annan okÑnd skada						
