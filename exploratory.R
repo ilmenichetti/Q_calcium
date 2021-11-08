@@ -267,12 +267,21 @@ params_table[8,]<-posteriors$delay
 colMeans(posteriors)
 
 
+source("Q_model_multirun.R")
+
+### preparing future scenarios concerning inputs
+
+biomass=time_series_input_interp$Biomass #biomass vector, annual values
+I_F_C=time_series_input_interp$`Littertrap C`*0.01#annual C inputs, litterfacll, in g/m2 converted to Mg/ha
+I_D_C=time_series_input_interp$CWD#annual C inputs, CWD, 
+
+
+
 outflux_Ca_multirun<-mat.or.vec(length(sim_Q$outflux_Ca), runs)
 litter_Ca_multirun<-mat.or.vec(length(sim_Q$litter_Ca), runs)
 decomp_Ca_multirun<-mat.or.vec(length(sim_Q$decomp_Ca), runs)
 litter_C_multirun<-mat.or.vec(length(sim_Q$litter_C), runs)
 
-source("Q_model_multirun.R")
 
 
 for (k in 1:runs){
@@ -351,6 +360,95 @@ dev.off()
 
 
 
+future_biomass<-c(biomass, rep(mean(biomass), 50))
+future_I_F_C<-c(I_F_C, rep(mean(I_F_C, na.rm=T), 50))
+future_I_D_C<-c(I_D_C, rep(mean(I_D_C), 50))
+future_P_Ca<-c(meq2Mg(time_series_input_interp$`Ca++ through`), rep(mean(meq2Mg(time_series_input_interp$`Ca++ through`), na.rm=T), 50))
+  
+
+png("./Figures/Future_input_scenario.png", height = 3500, width = 2800, res=300)
+par(mfrow=c(4,1))
+plot(future_biomass, type="l", ylim=c(0, max(biomass)), xlab="years", ylab="biomass", col="red", lty=2)
+lines(biomass, lwd=2)
+legend("bottomright", c("measured", "assumed (mean)"), col=c("black", "red"), lwd=c(2,1), lty=c(2,1), bty="n")
+plot(future_I_F_C, type="l", ylim=c(0, max(I_F_C, na.rm = T)), xlab="years", ylab="Litter", col="red", lty=2)
+lines(I_F_C, lwd=2)
+plot(future_P_Ca, type="l", ylim=c(0, max(future_P_Ca, na.rm = T)), xlab="years", ylab="Ca deposition", col="red", lty=2)
+lines(meq2Mg(time_series_input_interp$`Ca++ through`), lwd=2)
+plot(future_I_D_C, type="l", ylim=c(0, max(I_D_C)), xlab="years", ylab="CWD", col="red", lty=2)
+lines(I_D_C, lwd=2)
+legend("topright", c("assumed based on historical events", "assumed (mean)"), col=c("black", "red"), lwd=c(2,1), lty=c(2,1), bty="n")
+dev.off()
+
+
+
+outflux_Ca_multirun_future<-mat.or.vec(length(future_biomass), runs)
+litter_Ca_multirun_future<-mat.or.vec(length(future_biomass), runs)
+decomp_Ca_multirun_future<-mat.or.vec(length(future_biomass), runs)
+litter_C_multirun_future<-mat.or.vec(length(future_biomass), runs)
+
+
+
+for (k in 1:runs){
+  
+  # sim_Q_single<-Q_Ca(
+  # #variables:
+  # biomass=time_series_input_interp$Biomass, #biomass vector, annual values
+  # I_F_C=time_series_input_interp$`Littertrap C`*0.01,#annual C inputs, litterfacll, in g/m2 converted to Mg/ha
+  # I_D_C=time_series_input_interp$CWD,#annual C inputs, CWD, 
+  # ## parameters
+  # rho_alive=1/(8.3*10^3),
+  # rho_dead=1/mean_litter_ratio,
+  # P_Ca=meq2Mg(time_series_input_interp$`Ca++ through`), #net calcium deposition every year
+  # spinup=100,
+  # e_tmax=0.6,
+  # delay=0) 
+  
+  sim_Q_single_future<-Q_Ca_multi(
+    #variables:
+    biomass=future_biomass, #biomass vector, annual values
+    I_F_C=future_I_F_C,#annual C inputs, litterfacll, in g/m2 converted to Mg/ha
+    I_D_C=future_I_D_C,#annual C inputs, CWD, 
+    ## parameters
+    rho_alive=1/(8.3*10^3),
+    rho_dead=1/mean_litter_ratio,
+    P_Ca=future_P_Ca, #net calcium deposition every year
+    spinup=100, 
+    beta=params_table[1,k],
+    eta_11=params_table[2,k],
+    e0=params_table[3,k],
+    fc=params_table[4,k],
+    u0=params_table[5,k],
+    q0=params_table[6,k],
+    tmax=params_table[7,k],
+    delay=params_table[8,k]) 
+  
+  outflux_Ca_multirun_future[,k]<-sim_Q_single_future$outflux_Ca
+  litter_Ca_multirun_future[,k]<-sim_Q_single_future$litter_Ca
+  decomp_Ca_multirun_future[,k]<-sim_Q_single_future$decomp_Ca
+  litter_C_multirun_future[,k]<-sim_Q_single_future$litter_C
+  
+}
+
+years_sim<-seq(1:length(sim_Q_single_future$outflux_Ca))
+
+
+png("./Figures/Simulation_range_future.png", height = 3500, width = 2800, res=300)
+par(mfrow=c(2,1))
+plot(years_sim, apply(litter_Ca_multirun_future, 1, FUN=mlv),  type="l", ylab="Potential Ca flux in the litterfall (Mg ha-1 y-1)" , xlab="Year", col="firebrick", lwd=2, ylim=c(0,max(litter_Ca_multirun_future)*1.1))
+points(meq2Mg(time_series_input_interp$`Ca++ Litter`), pch=16, col="red")
+polygon(c(years_sim, rev(years_sim)), c(rowQuantiles(litter_Ca_multirun_future, probs=c(0.025, 0.975))[,1], rev(rowQuantiles(litter_Ca_multirun_future, probs=c(0.025, 0.975))[,2])), col=add.alpha("darkorange", 0.2))
+legend("topleft", c("Litterfall (mode of predictions)", "Litterfall (measured)"), lty=c(1,NA,2), pch=c(NA, 16, NA), bty="n", lwd=c(2,NA,2), col=c("firebrick", "red", "darkorchid"))
+legend("topright", "uncertainty", pch=15, col=add.alpha("darkorange", 0.2), bty="n")
+
+plot(years_sim, apply(decomp_Ca_multirun_future, 1, FUN=mlv),  type="l", ylab="Potential Ca flux in the CWD (Mg ha-1 y-1)" , xlab="Year", col="darkgreen", lwd=2, ylim=c(0,max(decomp_Ca_multirun)*1.1))
+polygon(c(years_sim, rev(years_sim)), c(rowQuantiles(decomp_Ca_multirun_future, probs=c(0.025, 0.975))[,1], rev(rowQuantiles(decomp_Ca_multirun_future, probs=c(0.025, 0.975))[,2])), col=add.alpha("chartreuse3", 0.2))
+legend("topleft", c("CWD (mode of predictions)"), lty=c(1), pch=c(NA), bty="n", lwd=c(2), col=c("darkgreen"))
+legend("topright", "uncertainty", pch=15, col=add.alpha("chartreuse3", 0.2), bty="n")
+
+dev.off()
+
+
 
 ########### Temperature and precipitation future scenarios
 #https://www.smhi.se/en/climate/future-climate/climate-scenarios/sweden/nation/rcp45/year/temperature
@@ -362,6 +460,89 @@ spruce_CA<-function(MAP){
 }
 #the paper contains functions for many other species too!
 
-spruce_CA(750)
+
+precipitations_future<-as.data.frame(read.csv("./Data/Meteo_scenarios/swe_SMHI_projections.csv"))
+
+CA_ratio_future_mean<-spruce_CA(750+750*(precipitations_future$medel/100))
+CA_ratio_future_min<-spruce_CA(750+750*(precipitations_future$min/100))
+CA_ratio_future_max<-spruce_CA(750+750*(precipitations_future$max/100))
+
+
+
+png("./Figures/precipitations_predictions.png", height = 3500, width = 2800, res=300)
+par(mfrow=c(2,1))
+plot(precipitations_future$X.r, 750+750*(precipitations_future$medel/100),  type="l", ylab="Mean annual precipitations (mm)" , xlab="Year", col="blue", lwd=2, ylim=c(0,max(750+750*(precipitations_future$max/100))*1.1))
+polygon(c(precipitations_future$X.r, rev(precipitations_future$X.r)), c(750+750*(precipitations_future$min/100), rev(750+750*(precipitations_future$max/100))), col=add.alpha("deepskyblue", 0.2))
+plot(precipitations_future$X.r, CA_ratio_future_mean,  type="l", ylab="Ratio Ca:C in biomass" , xlab="Year", col="firebrick", lwd=2, ylim=c(0,max(CA_ratio_future_min)*1.1))
+polygon(c(precipitations_future$X.r, rev(precipitations_future$X.r)), c(CA_ratio_future_min, rev(CA_ratio_future_max)), col=add.alpha("darkorange", 0.2))
+dev.off()
+
+outflux_Ca_multirun_future_clim<-mat.or.vec(length(future_biomass), runs)
+litter_Ca_multirun_future_clim<-mat.or.vec(length(future_biomass), runs)
+decomp_Ca_multirun_future_clim<-mat.or.vec(length(future_biomass), runs)
+litter_C_multirun_future_clim<-mat.or.vec(length(future_biomass), runs)
+
+
+
+
+
+for (k in 1:runs){
+  
+  # sim_Q_single<-Q_Ca(
+  # #variables:
+  # biomass=time_series_input_interp$Biomass, #biomass vector, annual values
+  # I_F_C=time_series_input_interp$`Littertrap C`*0.01,#annual C inputs, litterfacll, in g/m2 converted to Mg/ha
+  # I_D_C=time_series_input_interp$CWD,#annual C inputs, CWD, 
+  # ## parameters
+  # rho_alive=1/(8.3*10^3),
+  # rho_dead=1/mean_litter_ratio,
+  # P_Ca=meq2Mg(time_series_input_interp$`Ca++ through`), #net calcium deposition every year
+  # spinup=100,
+  # e_tmax=0.6,
+  # delay=0) 
+  
+  sim_Q_single_future_clim<-Q_Ca_multi(
+    #variables:
+    biomass=future_biomass, #biomass vector, annual values
+    I_F_C=future_I_F_C,#annual C inputs, litterfacll, in g/m2 converted to Mg/ha
+    I_D_C=future_I_D_C,#annual C inputs, CWD, 
+    ## parameters
+    rho_alive=1/(8.3*10^3),
+    rho_dead=1/mean_litter_ratio,
+    P_Ca=future_P_Ca, #net calcium deposition every year
+    spinup=100, 
+    beta=params_table[1,k],
+    eta_11=params_table[2,k],
+    e0=params_table[3,k],
+    fc=params_table[4,k],
+    u0=params_table[5,k],
+    q0=params_table[6,k],
+    tmax=params_table[7,k],
+    delay=params_table[8,k]) 
+  
+  outflux_Ca_multirun_future[,k]<-sim_Q_single_future$outflux_Ca
+  litter_Ca_multirun_future[,k]<-sim_Q_single_future$litter_Ca
+  decomp_Ca_multirun_future[,k]<-sim_Q_single_future$decomp_Ca
+  litter_C_multirun_future[,k]<-sim_Q_single_future$litter_C
+  
+}
+
+years_sim<-seq(1:length(sim_Q_single_future$outflux_Ca))
+
+
+png("./Figures/Simulation_range_future.png", height = 3500, width = 2800, res=300)
+par(mfrow=c(2,1))
+plot(years_sim, apply(litter_Ca_multirun_future, 1, FUN=mlv),  type="l", ylab="Potential Ca flux in the litterfall (Mg ha-1 y-1)" , xlab="Year", col="firebrick", lwd=2, ylim=c(0,max(litter_Ca_multirun_future)*1.1))
+points(meq2Mg(time_series_input_interp$`Ca++ Litter`), pch=16, col="red")
+polygon(c(years_sim, rev(years_sim)), c(rowQuantiles(litter_Ca_multirun_future, probs=c(0.025, 0.975))[,1], rev(rowQuantiles(litter_Ca_multirun_future, probs=c(0.025, 0.975))[,2])), col=add.alpha("darkorange", 0.2))
+legend("topleft", c("Litterfall (mode of predictions)", "Litterfall (measured)"), lty=c(1,NA,2), pch=c(NA, 16, NA), bty="n", lwd=c(2,NA,2), col=c("firebrick", "red", "darkorchid"))
+legend("topright", "uncertainty", pch=15, col=add.alpha("darkorange", 0.2), bty="n")
+
+plot(years_sim, apply(decomp_Ca_multirun_future, 1, FUN=mlv),  type="l", ylab="Potential Ca flux in the CWD (Mg ha-1 y-1)" , xlab="Year", col="darkgreen", lwd=2, ylim=c(0,max(decomp_Ca_multirun)*1.1))
+polygon(c(years_sim, rev(years_sim)), c(rowQuantiles(decomp_Ca_multirun_future, probs=c(0.025, 0.975))[,1], rev(rowQuantiles(decomp_Ca_multirun_future, probs=c(0.025, 0.975))[,2])), col=add.alpha("chartreuse3", 0.2))
+legend("topleft", c("CWD (mode of predictions)"), lty=c(1), pch=c(NA), bty="n", lwd=c(2), col=c("darkgreen"))
+legend("topright", "uncertainty", pch=15, col=add.alpha("chartreuse3", 0.2), bty="n")
+
+dev.off()
 
 

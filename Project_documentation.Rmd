@@ -1,5 +1,5 @@
 ---
-title: "Vulnerability of Ca^++^ stocks to an increase in average precipitations (working report)"
+title: "Vulnerability of Ca^++^ stocks of a reference Swedish forest to an increase in average precipitations (working report)"
 author: "Lorenzo Menichetti"
 date: "10/18/2021"
 output: html_document
@@ -32,17 +32,33 @@ The model is run considering only priors from the former calibration, without up
 # 2 Extending Ca^++^ vulnerability predictions for Aneboda to future climate scenarios
 
 ## 2.1 Calcium content and climate
+Calcium content in different tree species is known to be linked with precipitations. We will utilize the relationship expressed in @bergCalciumDecomposingFoliar2017 for linking our modeling results with the climatic projections from SMHI. 
+![Relationship between Calcium content and precipitation, from ](Figures/Berg_2017_Fig2.png)
 
-Calcium content in different tree species is known to be linked with precipitations. We will utilize the relationship expressed in @bergCalciumDecomposingFoliar2017 for linking our modeling results with the climatic projections from SMHI. ![Relationship between Calcium content and precipitation, from ](Figures/Berg_2017_Fig2.png)
-
-The future climate scenarios will be derived from the average for Sweden produced by SMHI The future climate scenarios will be derived from the average for Sweden produced by SMHI [(https://www.smhi.se/en/climate/future-climate/climate-scenarios/sweden/nation/rcp45/year/precipitation)](https://www.smhi.se/en/climate/future-climate/climate-scenarios/sweden/nation/rcp45/year/precipitation): ![Future precipitations in Sweden, from https://www.smhi.se/en/climate/future-climate/climate-scenarios/sweden/nation/rcp45/year/precipitation](Figures/n_ar_swe_rcp45_y.png)
-
+The future climate scenarios will be derived from the average for Sweden produced by SMHI The future climate scenarios will be derived from the average for Sweden produced by SMHI [(https://www.smhi.se/en/climate/future-climate/climate-scenarios/sweden/nation/rcp45/year/precipitation)](https://www.smhi.se/en/climate/future-climate/climate-scenarios/sweden/nation/rcp45/year/precipitation): 
+![Future precipitations in Sweden, from https://www.smhi.se/en/climate/future-climate/climate-scenarios/sweden/nation/rcp45/year/precipitation](Figures/n_ar_swe_rcp45_y.png)
+data are reported as \% variation relative to current precipitation, so I chose as a reference level 750 mm MAP as stated in the annual reports.
 
 ## 2.2 Extending the predictions for Aneboda considering future climatic scenarios
 
+### 2.2.1 Future Ca vulnerability assuming constant input and climate
+First of all we need to assume some future C inputs. For simplicity we assume a conservation scenario, and extend the inputs 50 years in the future by using a mean (of the whole time series):
+![Assumptions on the future C input scenario](Figures/Future_input_scenario.png)
+This produces the following predictions concerning the Ca^++^ ions:
+![Future predictions with constant climate and inputs](Figures/Simulation_range_future.png)
+
+This picture is of course highly dependent on the inputs, in particular the CWD inputs.
+
+### 2.2.1 Future Ca vulnerability assuming constant input and changing climate
+When considering instead future climate, we can simulate the effect of the foreseen change in precipitation in the Ca content of the biomass:
+![Predicted future precipitations in Aneboda, and the consequent Ca:C ratio in the biomass](Figures/precipitations_predictions.png)
+
+We then use these data to drive a new decomposition simulation:
 
 
-# 3 Extending predictions for Sweden to future climate scenarios 
+# 3 Conclusions: estimated sensitivity of Ca stocks to change in climate and to catastrophic events
+
+
 
 
 # References
