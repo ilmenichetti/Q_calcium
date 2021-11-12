@@ -167,7 +167,7 @@ Q_Ca_multi<-function(#variables:
   S_ca = xi_Ca + P_Ca #- Veg_Ca
   
 
-return(list(outflux_Ca=S_ca, litter_Ca=F_Ca, decomp_Ca=xi_Ca, litter_C=(dec_litter+dec_CWD))) #the functions output is the simulated Ca in the catchment outflux
+return(list(outflux_Ca=S_ca, litter_Ca=F_Ca, decomp_Ca=xi_Ca, decomp_Ca_litter=resp_litter*rho_dead , decomp_Ca_CWD= resp_CWD*rho_dead, litter_C=(dec_litter+dec_CWD))) #the functions output is the simulated Ca in the catchment outflux
 
 }
 
