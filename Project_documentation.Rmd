@@ -27,47 +27,44 @@ Short communications aim to provide rapid dissemination of preliminary, but sign
 # Keywords
 
 # Introduction
-Base cations, and in particular Calcium (Ca), are positively connected with forest fertility but are at the same time highly sensitive to anthropogenic disturbances [@leysNaturalAnthropogenicDrivers2016].
+Base cations, and in particular Calcium (Ca), are positively connected with forest fertility but are at the same time highly sensitive to anthropogenic and natural disturbances [@leysNaturalAnthropogenicDrivers2016]. The return time of natural disturbances is closely connected with tree mortality [@pughImportantRoleForest2019] and the consequent flux of Ca resulting from biomass decomposition. Such return time, and therefore the frequency of disturbances, is increasing in both southern Europe and northern Europe (south Sweden and Finland) due to climate change [@neumannClimateVariabilityDrives2017] and a consequent increase in tree mortality, although at the moment not easily predictable, is something to prepare for. Besides the evident effect these mortality events have on the net primary production of forest stands, another possible consequence is the loss of other nutrients associated with the mineralization of huge quantities of organic matter from dead trees.
+In the present study we focused on historical Ca dynamics in a southern Sweden monitored forest [@lofgrenRecoverySoilWater2011], representing them with an organic matter decomposition model [@hyvonenDynamicsSoilCa2012] in one of its most recent calibrations specific to coarse dead wood[@menichettiModelingPersistenceCoarse2021]. We utilized the model to understand the contribution of decomposition to Ca mobilization, and consequently on the vulnerability of Ca stocks to both climate change and disturbance events.
 
 # Materials and methods
+## The study site
 
-
-# Results
-## 0 Starting point
+## The model and how it was used
 The Q model in its former calibration [@hyvonenPredictingLongTermSoil1998] can represent relatively well the litterfall Ca^++^ fluxes, as in this draft simulation:
-![Fig.1: The drafted simulation, without considering uncertainty, based on Q](Figures/Simulation_draft.png)
-The model is driven by littertrap C data and by assumptions about CWD data which are representing the annual inputs for the decomposition model. 
+![Appendix 1: The drafted simulation, without considering uncertainty, based on Q](Figures/Simulation_draft.png)
+The model is driven by littertrap C data measured directly at the site, and by assumptions about CWD data which are representing the annual inputs for the decomposition model. 
+### Estimating CWD inputs
 
-## 1 Extending Q to predict potential Ca^++^ mineralization with uncertainty
-
-## 1.2 Uncertainty implementation
-
+## Extending Q to predict potential Ca^++^ mineralization with uncertainty
 We can consider the uncertainty of the model predictions by extending forward the uncertainty estimated for Q previously estimated [menichettiModelingPersistenceCoarse2021]. Such calibration produced a set of possible parameter values within a certain confidence interval of predictions (based on the calibration decomposition dataset of the study), and we can assume that the parameter uncertainty will be the same in this case. We can therefore run multiple iterations of the model using the former calibration parameter sets to produce margins of uncertainty.
 The terms u0 and tmax are calculated, with an error term added from the model calibration. The maximum tree diameter has been assumed as 13.5 centimeters, from the average of the dataset of the model calibration [@makinenPREDICTINGDECOMPOSITIONSCOTS2006]. The term u0 is calculated from latitude according to @hyvonenPredictingLongTermSoil1998 based on the relationship $u0=0.0855+0.0157*(50.6-0.768*latitude)$. Error terms to these values are added based on the model calibration in @menichettiModelingPersistenceCoarse2021.
-
-![Fig.2: The simulation considering uncertainty, based on Q](Figures/Simulation_range.png)
-
 The model is run considering only priors from the former calibration, without updating them with new information. This is because there is very little information to constrain the model. It would be possible to use the litterfall Ca^++^ data to update the priors, but then those data would influence the whole calibration and the updated parameter distributions (based on litterfall) would influence also the kinetics of the CWD decomposition. Given the importance of the latter in sudden pulses (which are the most dangerous in terms of Ca^++^ losses), we preferred not to update the calibration since it was based on (and optimized for) CWD kinetics. 
-
 We chose to utilize the generic parameterization from @menichettiModelingPersistenceCoarse2021 instead of the specific ones, in order to have a more generic result. This calibration is based on spruce and pines data, and on both snags and fallen logs. Having calibrated both on snags and logs, which present different kinetics, the calibration presents a bimodal probability distribution for some parameters which reflects sometimes in the bimodal distribution of the results.
 We do not have data about the proportions of dead snags or logs in the stand, and we therefore need to rely on this more general calibration rather than specific ones.
 
-## 1.2 Assumptions to predict CWD inputs
+## Extending Ca^++^ vulnerability predictions for Aneboda to future climate scenarios
 
-
-## 2 Extending Ca^++^ vulnerability predictions for Aneboda to future climate scenarios
-
-### 2.1 Calcium content and climate
+### Calcium content and climate
 Calcium content in different tree species is known to be linked with precipitations. We will utilize the relationship expressed in @bergCalciumDecomposingFoliar2017 for linking our modeling results with the climatic projections from SMHI. 
 ![Relationship between Calcium content and precipitation, from ](Figures/Berg_2017_Fig2.png)
-
 The future climate scenarios will be derived from the average for Sweden produced by SMHI The future climate scenarios will be derived from the average for Sweden produced by SMHI [(https://www.smhi.se/en/climate/future-climate/climate-scenarios/sweden/nation/rcp45/year/precipitation)](https://www.smhi.se/en/climate/future-climate/climate-scenarios/sweden/nation/rcp45/year/precipitation): 
 ![Future precipitations in Sweden, from https://www.smhi.se/en/climate/future-climate/climate-scenarios/sweden/nation/rcp45/year/precipitation](Figures/n_ar_swe_rcp45_y.png)
 data are reported as \% variation relative to current precipitation, so I chose as a reference level 750 mm MAP as stated in the annual reports.
 
-### 2.2 Extending the predictions for Aneboda considering future climatic scenarios
 
-#### 2.2.1 Future Ca vulnerability assuming constant input and climate
+# Results
+
+## Uncertainty in Ca^++^ mobilization due to organic matter decomposition
+
+![Fig.2: The simulation considering uncertainty, based on Q](Figures/Simulation_range.png)
+
+
+
+## Future Ca vulnerability assuming constant input and climate
 First of all we need to assume some future C inputs. For simplicity we assume a conservation scenario, and extend the inputs 50 years in the future by using a mean (of the whole time series):
 ![Assumptions on the future C input scenario](Figures/Future_input_scenario.png)
 This produces the following predictions concerning the Ca^++^ ions:
@@ -75,8 +72,12 @@ This produces the following predictions concerning the Ca^++^ ions:
 
 This picture is of course highly dependent on the inputs, in particular the CWD inputs.
 
-When considering instead future climate, we can simulate the effect of ### 2.2.1 Future Ca vulnerability assuming constant input and changing climate
-the foreseen change in precipitation in the Ca content of the biomass:
+When considering instead future climate, we can simulate the effect of the foreseen change in precipitation in the Ca content of the biomass:
+
+
+
+## 2.2.1 Future Ca vulnerability assuming constant input and changing climate
+
 ![Predicted future precipitations in Aneboda, and the consequent Ca:C ratio in the biomass](Figures/precipitations_predictions.png)
 
 We then use these data to drive a new decomposition simulation. We first transform min, max and mean Ca scenarios in a relative variation, and we apply this variation both to the living and dead Ca:C ratio.
@@ -88,6 +89,15 @@ We then use these data to drive a new decomposition simulation. We first transfo
 The bimodal probability distribution of the litter stocks is probably due to the model calibration used presenting a bimodal distribution for some parameters, which in turns represent different types of dead wood (the different peaks are probably representing different kind of materials with different kinetics, for example snags or logs and of different species. The resulting model ensemble is anyway more robust)
 
 
+
+## Future Ca vulnerability in a simulated forest management assuming variable climate and simulated natural disasters
+In order to extend the simulation of the potential C losses to a managed forest, we simulated a typical Swedish forest with a semi-empirical growth model [@agrenChangesCarbonStores2003a]. We assumed an average site index for Sweden of 21.7 [@fahlvikEvaluationGrowthFunctions2014] and an average latitude of 60.1, and simulated the biomass growth of a typical clear cut system with thinnings. We assumed that all harvest residuals wer left in place.
+We then perturbated such system assuming a single mortality event killing 70% of the trees of the stand, and adapted the sequence of thinnings to match the basal area of the first scenario with natural growth.
+
+![The two forest management scenarios](Data/scenario/scenario.png)
+
+
+
 # Discussion
 
 ## Representing kinetics of Calcium over time
@@ -95,9 +105,10 @@ Biomass in a same stand, with stable climatic conditions, has a relatively const
 The Ca^++^ ions once released can be either leeched, absorbed by the soil buffer capacity or be absorbed by new biomass growing. In our case the forest is not growing, and the biomass is reducing due to the reported storms and insect outbreaks.
 ![Measured tree biomass on the experimental site](Figures/ABG_biomass.png)
 Biomass is therefore not absorbing Ca, and the newly mobilized Ca^++^ ions are potentially vulnerable for leaching. 
-This suggests that, as a consequence of natural stresses such as massive plant deaths caused by storms/outbreaks, the system is losing Ca. This seems confirmed by the Cacontent in the stream water from the catchment around a decade after the insect outbreaks following the Gudrun storm.
+This suggests that, as a consequence of natural stresses such as massive plant deaths caused by storms/outbreaks, the system is losing Ca. This seems confirmed by the Ca content in the stream water from the catchment around a decade after the insect outbreaks following the Gudrun storm.
 ![Simulation vs measured bulk Ca flux](Figures/Simulation_vs_measured.png)
-The lag we observe is probably due to the soil buffer capacity, but ultimately if the biomass does not grow back these events will result in a Ca loss from the syste,
+The lag we observe is probably due to the soil buffer capacity, but ultimately if the biomass does not grow back these events will result in a Ca loss from the system
+
 
 
 # Conclusions: estimated sensitivity of Ca stocks to change in climate and to catastrophic events
