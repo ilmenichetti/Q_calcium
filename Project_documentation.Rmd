@@ -55,6 +55,10 @@ The future climate scenarios will be derived from the average for Sweden produce
 ![Future precipitations in Sweden, from https://www.smhi.se/en/climate/future-climate/climate-scenarios/sweden/nation/rcp45/year/precipitation](Figures/n_ar_swe_rcp45_y.png)
 data are reported as \% variation relative to current precipitation, so I chose as a reference level 750 mm MAP as stated in the annual reports.
 
+## Future Ca vulnerability in a simulated forest management assuming variable climate and a natural disasters
+In order to extend the simulation of the potential C losses to a managed forest, we simulated a typical Swedish forest with a semi-empirical growth model [@agrenChangesCarbonStores2003a]. We assumed an average site index for Sweden of 21.7 [@fahlvikEvaluationGrowthFunctions2014] and an average latitude of 60.1, and simulated the biomass growth of a typical clear cut system with thinnings. We assumed that all harvest residuals wer left in place.
+We then perturbated such system assuming a single mortality event killing 70% of the trees of the stand, and adapted the sequence of thinnings to match the basal area of the first scenario with natural growth.
+
 
 # Results
 
@@ -90,12 +94,13 @@ The bimodal probability distribution of the litter stocks is probably due to the
 
 
 
-## Future Ca vulnerability in a simulated forest management assuming variable climate and simulated natural disasters
-In order to extend the simulation of the potential C losses to a managed forest, we simulated a typical Swedish forest with a semi-empirical growth model [@agrenChangesCarbonStores2003a]. We assumed an average site index for Sweden of 21.7 [@fahlvikEvaluationGrowthFunctions2014] and an average latitude of 60.1, and simulated the biomass growth of a typical clear cut system with thinnings. We assumed that all harvest residuals wer left in place.
-We then perturbated such system assuming a single mortality event killing 70% of the trees of the stand, and adapted the sequence of thinnings to match the basal area of the first scenario with natural growth.
+## Future Ca vulnerability in a simulated forest management assuming variable climate and a natural disasters
+The two scenarios presented a similar final basal area at harvest, but in the scenario with a simulated tree mortality event the management changed avoiding two thinnings while the stand weas recovering. We do not consider here the diameter distribution (which will be more skewed towards bigger trees after the mortality event), but according to the empirical growth equations considered by the growth model [@agrenChangesCarbonStores2003] the change in tree density does not limit the growth of the stand.
 
 ![The two forest management scenarios](Data/scenario/scenario.png)
+we assumed that only 50% of the dead trees was recovered, while the remaining was lost to decomposition. This produced a very clear peak in the amount of Ca mobilized caused by the tree death event:
 
+![The two forest management scenarios](Figures/Simulation_range_scenario.png)
 
 
 # Discussion

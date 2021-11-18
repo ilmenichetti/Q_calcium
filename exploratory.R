@@ -655,4 +655,305 @@ dev.off()
 
 
 
-### Equilibrium work
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# simulation on management scenario
+
+#prepare the simulation input files
+
+abg<-read.csv("./Data/Scenario/aboveground.csv")
+residuals<-read.csv("./Data/Scenario/harvest_residuals.csv")
+litter<-read.csv("./Data/Scenario/litter.csv")
+
+scenario_biomass<-rowSums(abg)/1000
+scenario_I_F_C<-(rowSums(litter))/1000
+scenario_I_D_C<-head(rowSums(residuals),-1)/1000
+
+
+abg_disaster<-read.csv("./Data/Scenario/aboveground_disaster.csv")
+residuals_disaster<-read.csv("./Data/Scenario/harvest_residuals_disaster.csv")
+litter_disaster<-read.csv("./Data/Scenario/litter_disaster.csv")
+
+scenario_disaster_biomass<-rowSums(abg_disaster)/1000
+scenario_disaster_I_F_C<-(rowSums(litter_disaster))/1000
+scenario_disaster_I_D_C<-head(rowSums(residuals_disaster),-1)/1000
+scenario_disaster_I_D_C[60]<- scenario_I_D_C_disaster[60]+(scenario_biomass_disaster[59]-scenario_biomass_disaster[60])*0.5
+
+
+
+scenario_sim_length<-dim(abg)[1]
+
+CA_modifier_future_mean<-CA_ratio_future_mean/CA_ratio_future_mean[1]
+CA_modifier_future_min<-CA_ratio_future_min/CA_ratio_future_min[1]
+CA_modifier_future_max<-CA_ratio_future_max/CA_ratio_future_max[1]
+
+
+
+#scenario nodisaster
+
+outflux_Ca_multirun_scenario_min<-mat.or.vec(scenario_sim_length, runs)
+litter_Ca_multirun_scenario_min<-mat.or.vec(scenario_sim_length, runs)
+decomp_Ca_multirun_scenario_min<-mat.or.vec(scenario_sim_length, runs)
+litter_C_multirun_scenario_min<-mat.or.vec(scenario_sim_length, runs)
+decomp_Ca_multirun_litter_scenario_min<-mat.or.vec(scenario_sim_length, runs)
+decomp_Ca_multirun_CWD_scenario_min<-mat.or.vec(scenario_sim_length, runs)
+
+outflux_Ca_multirun_scenario_mean<-mat.or.vec(scenario_sim_length, runs)
+litter_Ca_multirun_scenario_mean<-mat.or.vec(scenario_sim_length, runs)
+decomp_Ca_multirun_scenario_mean<-mat.or.vec(scenario_sim_length, runs)
+litter_C_multirun_scenario_mean<-mat.or.vec(scenario_sim_length, runs)
+decomp_Ca_multirun_litter_scenario_mean<-mat.or.vec(scenario_sim_length, runs)
+decomp_Ca_multirun_CWD_scenario_mean<-mat.or.vec(scenario_sim_length, runs)
+
+outflux_Ca_multirun_scenario_max<-mat.or.vec(scenario_sim_length, runs)
+litter_Ca_multirun_scenario_max<-mat.or.vec(scenario_sim_length, runs)
+decomp_Ca_multirun_scenario_max<-mat.or.vec(scenario_sim_length, runs)
+litter_C_multirun_scenario_max<-mat.or.vec(scenario_sim_length, runs)
+decomp_Ca_multirun_litter_scenario_max<-mat.or.vec(scenario_sim_length, runs)
+decomp_Ca_multirun_CWD_scenario_max<-mat.or.vec(scenario_sim_length, runs)
+
+for (k in 1:runs){
+  
+  sim_Q_single_scenario_min<-Q_Ca_multi(
+    #variables:
+    biomass=scenario_biomass, #biomass vector, annual values
+    I_F_C=scenario_I_F_C,#annual C inputs, litterfacll, in g/m2 converted to Mg/ha
+    I_D_C=scenario_I_D_C,#annual C inputs, CWD, 
+    ## parameters
+    rho_alive=1/(8.3*10^3)*CA_modifier_future_min[from:to],
+    rho_dead=1/mean_litter_ratio*CA_modifier_future_min[from:to],
+    P_Ca=future_P_Ca, #net calcium deposition every year
+    spinup=100, 
+    beta=params_table[1,k],
+    eta_11=params_table[2,k],
+    e0=params_table[3,k],
+    fc=params_table[4,k],
+    u0=params_table[5,k],
+    q0=params_table[6,k],
+    tmax=params_table[7,k],
+    delay=params_table[8,k]) 
+  
+  sim_Q_single_scenario_mean<-Q_Ca_multi(
+    #variables:
+    biomass=scenario_biomass, #biomass vector, annual values
+    I_F_C=scenario_I_F_C,#annual C inputs, litterfacll, in g/m2 converted to Mg/ha
+    I_D_C=scenario_I_D_C,#annual C inputs, CWD, 
+    ## parameters
+    rho_alive=1/(8.3*10^3)*CA_modifier_future_mean[from:to],
+    rho_dead=1/mean_litter_ratio*CA_modifier_future_mean[from:to],
+    P_Ca=future_P_Ca, #net calcium deposition every year
+    spinup=100, 
+    beta=params_table[1,k],
+    eta_11=params_table[2,k],
+    e0=params_table[3,k],
+    fc=params_table[4,k],
+    u0=params_table[5,k],
+    q0=params_table[6,k],
+    tmax=params_table[7,k],
+    delay=params_table[8,k]) 
+  
+  sim_Q_single_scenario_max<-Q_Ca_multi(
+    #variables:
+    biomass=scenario_biomass, #biomass vector, annual values
+    I_F_C=scenario_I_F_C,#annual C inputs, litterfacll, in g/m2 converted to Mg/ha
+    I_D_C=scenario_I_D_C,#annual C inputs, CWD, 
+    ## parameters
+    rho_alive=1/(8.3*10^3)*CA_modifier_future_max[from:to],
+    rho_dead=1/mean_litter_ratio*CA_modifier_future_max[from:to],
+    P_Ca=future_P_Ca, #net calcium deposition every year
+    spinup=100, 
+    beta=params_table[1,k],
+    eta_11=params_table[2,k],
+    e0=params_table[3,k],
+    fc=params_table[4,k],
+    u0=params_table[5,k],
+    q0=params_table[6,k],
+    tmax=params_table[7,k],
+    delay=params_table[8,k]) 
+  
+  
+  outflux_Ca_multirun_scenario_min[,k]<-sim_Q_single_scenario_min$outflux_Ca
+  litter_Ca_multirun_scenario_min[,k]<-sim_Q_single_scenario_min$litter_Ca
+  decomp_Ca_multirun_scenario_min[,k]<-sim_Q_single_scenario_min$decomp_Ca
+  litter_C_multirun_scenario_min[,k]<-sim_Q_single_scenario_min$litter_C
+  decomp_Ca_multirun_litter_scenario_min[,k]<-sim_Q_single_scenario_min$decomp_Ca_litter
+  decomp_Ca_multirun_CWD_scenario_min[,k]<-sim_Q_single_scenario_min$decomp_Ca_CWD
+  
+  outflux_Ca_multirun_scenario_mean[,k]<-sim_Q_single_scenario_mean$outflux_Ca
+  litter_Ca_multirun_scenario_mean[,k]<-sim_Q_single_scenario_mean$litter_Ca
+  decomp_Ca_multirun_scenario_mean[,k]<-sim_Q_single_scenario_mean$decomp_Ca
+  litter_C_multirun_scenario_mean[,k]<-sim_Q_single_scenario_mean$litter_C
+  decomp_Ca_multirun_litter_scenario_mean[,k]<-sim_Q_single_scenario_mean$decomp_Ca_litter
+  decomp_Ca_multirun_CWD_scenario_mean[,k]<-sim_Q_single_scenario_mean$decomp_Ca_CWD
+  
+  outflux_Ca_multirun_scenario_max[,k]<-sim_Q_single_scenario_max$outflux_Ca
+  litter_Ca_multirun_scenario_max[,k]<-sim_Q_single_scenario_max$litter_Ca
+  decomp_Ca_multirun_scenario_max[,k]<-sim_Q_single_scenario_max$decomp_Ca
+  litter_C_multirun_scenario_max[,k]<-sim_Q_single_scenario_max$litter_C
+  decomp_Ca_multirun_litter_scenario_max[,k]<-sim_Q_single_scenario_max$decomp_Ca_litter
+  decomp_Ca_multirun_CWD_scenario_max[,k]<-sim_Q_single_scenario_max$decomp_Ca_CWD
+  
+}
+
+
+
+
+
+
+#scenario_disaster
+
+outflux_Ca_multirun_scenario_disaster_min<-mat.or.vec(scenario_sim_length, runs)
+litter_Ca_multirun_scenario_disaster_min<-mat.or.vec(scenario_sim_length, runs)
+decomp_Ca_multirun_scenario_disaster_min<-mat.or.vec(scenario_sim_length, runs)
+litter_C_multirun_scenario_disaster_min<-mat.or.vec(scenario_sim_length, runs)
+decomp_Ca_multirun_litter_scenario_disaster_min<-mat.or.vec(scenario_sim_length, runs)
+decomp_Ca_multirun_CWD_scenario_disaster_min<-mat.or.vec(scenario_sim_length, runs)
+
+outflux_Ca_multirun_scenario_disaster_mean<-mat.or.vec(scenario_sim_length, runs)
+litter_Ca_multirun_scenario_disaster_mean<-mat.or.vec(scenario_sim_length, runs)
+decomp_Ca_multirun_scenario_disaster_mean<-mat.or.vec(scenario_sim_length, runs)
+litter_C_multirun_scenario_disaster_mean<-mat.or.vec(scenario_sim_length, runs)
+decomp_Ca_multirun_litter_scenario_disaster_mean<-mat.or.vec(scenario_sim_length, runs)
+decomp_Ca_multirun_CWD_scenario_disaster_mean<-mat.or.vec(scenario_sim_length, runs)
+
+outflux_Ca_multirun_scenario_disaster_max<-mat.or.vec(scenario_sim_length, runs)
+litter_Ca_multirun_scenario_disaster_max<-mat.or.vec(scenario_sim_length, runs)
+decomp_Ca_multirun_scenario_disaster_max<-mat.or.vec(scenario_sim_length, runs)
+litter_C_multirun_scenario_disaster_max<-mat.or.vec(scenario_sim_length, runs)
+decomp_Ca_multirun_litter_scenario_disaster_max<-mat.or.vec(scenario_sim_length, runs)
+decomp_Ca_multirun_CWD_scenario_disaster_max<-mat.or.vec(scenario_sim_length, runs)
+
+for (k in 1:runs){
+  
+  sim_Q_single_scenario_disaster_min<-Q_Ca_multi(
+    #variables:
+    biomass=scenario_disaster_biomass, #biomass vector, annual values
+    I_F_C=scenario_disaster_I_F_C,#annual C inputs, litterfacll, in g/m2 converted to Mg/ha
+    I_D_C=scenario_disaster_I_D_C,#annual C inputs, CWD, 
+    ## parameters
+    rho_alive=1/(8.3*10^3)*CA_modifier_future_min[from:to],
+    rho_dead=1/mean_litter_ratio*CA_modifier_future_min[from:to],
+    P_Ca=future_P_Ca, #net calcium deposition every year
+    spinup=100, 
+    beta=params_table[1,k],
+    eta_11=params_table[2,k],
+    e0=params_table[3,k],
+    fc=params_table[4,k],
+    u0=params_table[5,k],
+    q0=params_table[6,k],
+    tmax=params_table[7,k],
+    delay=params_table[8,k]) 
+  
+  sim_Q_single_scenario_disaster_mean<-Q_Ca_multi(
+    #variables:
+    biomass=scenario_disaster_biomass, #biomass vector, annual values
+    I_F_C=scenario_disaster_I_F_C,#annual C inputs, litterfacll, in g/m2 converted to Mg/ha
+    I_D_C=scenario_disaster_I_D_C,#annual C inputs, CWD, 
+    ## parameters
+    rho_alive=1/(8.3*10^3)*CA_modifier_future_mean[from:to],
+    rho_dead=1/mean_litter_ratio*CA_modifier_future_mean[from:to],
+    P_Ca=future_P_Ca, #net calcium deposition every year
+    spinup=100, 
+    beta=params_table[1,k],
+    eta_11=params_table[2,k],
+    e0=params_table[3,k],
+    fc=params_table[4,k],
+    u0=params_table[5,k],
+    q0=params_table[6,k],
+    tmax=params_table[7,k],
+    delay=params_table[8,k]) 
+  
+  sim_Q_single_scenario_disaster_max<-Q_Ca_multi(
+    #variables:
+    biomass=scenario_disaster_biomass, #biomass vector, annual values
+    I_F_C=scenario_disaster_I_F_C,#annual C inputs, litterfacll, in g/m2 converted to Mg/ha
+    I_D_C=scenario_disaster_I_D_C,#annual C inputs, CWD, 
+    ## parameters
+    rho_alive=1/(8.3*10^3)*CA_modifier_future_max[from:to],
+    rho_dead=1/mean_litter_ratio*CA_modifier_future_max[from:to],
+    P_Ca=future_P_Ca, #net calcium deposition every year
+    spinup=100, 
+    beta=params_table[1,k],
+    eta_11=params_table[2,k],
+    e0=params_table[3,k],
+    fc=params_table[4,k],
+    u0=params_table[5,k],
+    q0=params_table[6,k],
+    tmax=params_table[7,k],
+    delay=params_table[8,k]) 
+  
+  
+  outflux_Ca_multirun_scenario_disaster_min[,k]<-sim_Q_single_scenario_disaster_min$outflux_Ca
+  litter_Ca_multirun_scenario_disaster_min[,k]<-sim_Q_single_scenario_disaster_min$litter_Ca
+  decomp_Ca_multirun_scenario_disaster_min[,k]<-sim_Q_single_scenario_disaster_min$decomp_Ca
+  litter_C_multirun_scenario_disaster_min[,k]<-sim_Q_single_scenario_disaster_min$litter_C
+  decomp_Ca_multirun_litter_scenario_disaster_min[,k]<-sim_Q_single_scenario_disaster_min$decomp_Ca_litter
+  decomp_Ca_multirun_CWD_scenario_disaster_min[,k]<-sim_Q_single_scenario_disaster_min$decomp_Ca_CWD
+  
+  outflux_Ca_multirun_scenario_disaster_mean[,k]<-sim_Q_single_scenario_disaster_mean$outflux_Ca
+  litter_Ca_multirun_scenario_disaster_mean[,k]<-sim_Q_single_scenario_disaster_mean$litter_Ca
+  decomp_Ca_multirun_scenario_disaster_mean[,k]<-sim_Q_single_scenario_disaster_mean$decomp_Ca
+  litter_C_multirun_scenario_disaster_mean[,k]<-sim_Q_single_scenario_disaster_mean$litter_C
+  decomp_Ca_multirun_litter_scenario_disaster_mean[,k]<-sim_Q_single_scenario_disaster_mean$decomp_Ca_litter
+  decomp_Ca_multirun_CWD_scenario_disaster_mean[,k]<-sim_Q_single_scenario_disaster_mean$decomp_Ca_CWD
+  
+  outflux_Ca_multirun_scenario_disaster_max[,k]<-sim_Q_single_scenario_disaster_max$outflux_Ca
+  litter_Ca_multirun_scenario_disaster_max[,k]<-sim_Q_single_scenario_disaster_max$litter_Ca
+  decomp_Ca_multirun_scenario_disaster_max[,k]<-sim_Q_single_scenario_disaster_max$decomp_Ca
+  litter_C_multirun_scenario_disaster_max[,k]<-sim_Q_single_scenario_disaster_max$litter_C
+  decomp_Ca_multirun_litter_scenario_disaster_max[,k]<-sim_Q_single_scenario_disaster_max$decomp_Ca_litter
+  decomp_Ca_multirun_CWD_scenario_disaster_max[,k]<-sim_Q_single_scenario_disaster_max$decomp_Ca_CWD
+  
+}
+
+
+
+
+
+years_sim<-seq(1:scenario_sim_length)
+
+
+
+
+png("./Figures/Simulation_range_scenario.png", height = 3500, width = 2800, res=300)
+par(mfrow=c(2,1))
+plot(years_sim, apply(litter_Ca_multirun_scenario_mean, 1, FUN=mlv),  type="l", ylab="Potential Ca flux in the litterfall (Mg ha-1 y-1)" , xlab="Year", col="firebrick", lwd=2, ylim=c(0,max(litter_Ca_multirun_scenario_min)*1.1))
+polygon(c(years_sim, rev(years_sim)), c(rowQuantiles(litter_Ca_multirun_scenario_max, probs=c(0.025, 0.975))[,1], rev(rowQuantiles(litter_Ca_multirun_scenario_min, probs=c(0.025, 0.975))[,2])), col=add.alpha("darkorange", 0.1), border=add.alpha("darkorange", 0.2))
+lines(years_sim, apply(litter_Ca_multirun_scenario_disaster_mean, 1, FUN=mlv), col="darkorchid", lwd=2, lty=2)
+polygon(c(years_sim, rev(years_sim)), c(rowQuantiles(litter_Ca_multirun_scenario_disaster_max, probs=c(0.025, 0.975))[,1], rev(rowQuantiles(litter_Ca_multirun_scenario_disaster_min, probs=c(0.025, 0.975))[,2])), col=add.alpha("darkorchid", 0.1), border=add.alpha("darkorchid", 0.2))
+legend("topleft", c("Litterfall (mode of predictions, regular scenario)", "Litterfall (mode of predictions, natural disaster scenario)"), lty=c(1,2, NA,2), pch=c(NA, NA), bty="n", lwd=c(2,2), col=c("firebrick", "darkorchid"))
+legend("topright", "uncertainty", pch=15, col=add.alpha("grey", 0.2), bty="n")
+plot(years_sim, apply(decomp_Ca_multirun_scenario_mean, 1, FUN=mlv),  type="l", ylab="Potential Ca flux in the CWD (Mg ha-1 y-1)" , xlab="Year", col="darkgreen", lwd=2, ylim=c(0,max(decomp_Ca_multirun_scenario_min)*1.5))
+polygon(c(years_sim, rev(years_sim)), c(rowQuantiles(decomp_Ca_multirun_scenario_max, probs=c(0.025, 0.975))[,1], rev(rowQuantiles(decomp_Ca_multirun_scenario_min, probs=c(0.025, 0.975))[,2])), col=add.alpha("chartreuse3", 0.1), border=add.alpha("chartreuse3", 0.1))
+lines(years_sim, apply(decomp_Ca_multirun_scenario_disaster_mean, 1, FUN=mlv), col="cadetblue", lwd=2, lty=2)
+polygon(c(years_sim, rev(years_sim)), c(rowQuantiles(decomp_Ca_multirun_scenario_disaster_max, probs=c(0.025, 0.975))[,1], rev(rowQuantiles(decomp_Ca_multirun_scenario_disaster_min, probs=c(0.025, 0.975))[,2])), col=add.alpha("cadetblue", 0.1), border=add.alpha("cadetblue", 0.2))
+legend("topright", c("CWD (mode of predictions, (mode of predictions, regular scenario))", "CWD (mode of predictions, (mode of predictions, natural disaster scenario))"), lty=c(1,2), pch=c(NA), bty="n", lwd=c(2,2), col=c("darkgreen", "cadetblue"))
+dev.off()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
